@@ -18,8 +18,7 @@ function New-TelegramIcon([string]$Path) {
     $bitmap = [System.Drawing.Bitmap]::new(256, 256)
     $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
     $graphics.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
-    $graphics.Clear([System.Drawing.Color]::Transparent
-    )
+    $graphics.Clear([System.Drawing.Color]::Transparent)
     $graphics.ScaleTransform(4, 4)
 
     $blue = [System.Drawing.SolidBrush]::new([System.Drawing.Color]::FromArgb(255, 34, 158, 217))
