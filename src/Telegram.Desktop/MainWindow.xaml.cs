@@ -15,7 +15,7 @@ namespace Telegram.Desktop;
 
 public partial class MainWindow : Window
 {
-    private const string StartUrl = "https://web.telegram.org/a//";
+    private const string StartUrl = "https://web.telegram.org/a/";
     private const int WmSettingChange = 0x001A;
     private const int WmGetMinMaxInfo = 0x0024;
     private const uint MonitorDefaultToNearest = 0x00000002;
