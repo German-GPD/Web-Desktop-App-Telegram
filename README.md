@@ -35,6 +35,8 @@ Telegram Desktop is an independent Windows application that opens the **official
 - **Official Telegram Web A** — loads [web.telegram.org/a/](https://web.telegram.org/a/); the Telegram service itself is not modified.
 - **Persistent sign-in** — a dedicated WebView2 profile keeps website session data locally between launches.
 - **Navigation controls** — reload and open-in-browser actions, plus keyboard navigation.
+- **Verified updates** — checks GitHub Releases and verifies the installer SHA-256 checksum before offering an update.
+- **Single instance** — a second launch activates the already-open window instead of opening another copy.
 - **Keyboard shortcuts** — `Ctrl + R` / `F5` to reload, `Alt + ←` to go back, `Alt + →` to go forward.
 - **Web features** — WebView2 handles downloads and website permission requests, including camera and microphone prompts.
 - **Personal settings** — light, dark and system themes, website zoom, and configurable toolbar order and visibility.
@@ -134,6 +136,8 @@ Released under the [MIT License](LICENSE).
 - **Официальный Telegram Web A** — загружает [web.telegram.org/a/](https://web.telegram.org/a/); сам сервис Telegram не изменяется.
 - **Сохранение входа** — отдельный профиль WebView2 хранит сессию сайта локально между запусками.
 - **Навигация** — обновление страницы, открытие в браузере и клавиатурные сочетания.
+- **Проверка обновлений** — приложение проверяет GitHub Releases и сверяет SHA-256 установщика перед предложением обновления.
+- **Один экземпляр** — повторный запуск активирует уже открытое окно вместо создания второго.
 - **Горячие клавиши** — `Ctrl + R` / `F5` — обновить, `Alt + ←` — назад, `Alt + →` — вперёд.
 - **Возможности сайта** — WebView2 обрабатывает загрузки и запросы разрешений сайта, включая камеру и микрофон.
 - **Настройки** — светлая, тёмная и системная темы, масштаб сайта, порядок и видимость кнопок панели.
@@ -233,6 +237,8 @@ Set-ExecutionPolicy -Scope Process Bypass
 - **Telegram Web A oficial** — carga [web.telegram.org/a/](https://web.telegram.org/a/); el servicio web no se modifica.
 - **Sesión persistente** — un perfil independiente de WebView2 conserva localmente la sesión entre ejecuciones.
 - **Navegación** — recargar, abrir en el navegador y navegación con el teclado.
+- **Actualizaciones verificadas** — comprueba GitHub Releases y verifica SHA-256 del instalador antes de ofrecer una actualización.
+- **Instancia única** — una segunda ejecución activa la ventana abierta en lugar de abrir otra copia.
 - **Atajos de teclado** — `Ctrl + R` / `F5` para recargar, `Alt + ←` para volver y `Alt + →` para avanzar.
 - **Funciones web** — WebView2 gestiona descargas y solicitudes de permisos del sitio, como cámara y micrófono.
 - **Configuración** — temas claro, oscuro y del sistema, zoom y controles de la barra superior.
