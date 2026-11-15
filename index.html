@@ -3,176 +3,181 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f7f5">
-  <meta name="description" content="Telegram Desktop — неофициальное лёгкое приложение для Windows 11. Официальный Telegram внутри нативного окна Windows.">
-  <title>Telegram Desktop — Telegram на Windows</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#f5f8fb">
+  <meta name="description" content="Telegram Desktop от German-GPD — независимое приложение для Windows, открывающее официальный Telegram Web в отдельном окне.">
+  <meta name="color-scheme" content="light dark">
+  <title>Telegram Desktop — Telegram в отдельном окне Windows</title>
+  <link rel="icon" href="assets/telegram.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://github.com">
   <link rel="stylesheet" href="assets/site.css">
   <script src="assets/site.js" defer></script>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="Telegram Desktop — на главную">
-      <span class="brand-mark" aria-hidden="true">✳</span>
-      <span>Telegram <span class="brand-light">Desktop</span></span>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Telegram Desktop — главная">
+      <img src="assets/telegram.svg" alt="" width="36" height="36">
+      <span>Telegram <span class="brand-muted">Desktop</span></span>
     </a>
-    <nav class="nav" aria-label="Основная навигация">
+    <nav class="main-nav" aria-label="Основная навигация">
       <a href="#features">Возможности</a>
-      <a href="#install">Установка</a>
-      <a href="https://github.com/German-GPD/Web-Desktop-App-Telegram" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a href="#download">Загрузка</a>
+      <a href="#faq">Вопросы</a>
+      <a href="https://github.com/German-GPD/Web-Desktop-App-Telegram" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </nav>
-    <div class="top-actions">
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить тему" title="Переключить тему">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.64 5.64l1.42 1.42m9.88 9.88 1.42 1.42m0-12.72-1.42 1.42m-9.88 9.88-1.42 1.42"/><circle cx="12" cy="12" r="4"/></svg>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Сменить тему" title="Сменить тему">
+        <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
       </button>
-      <a class="button button-small button-dark" href="#install">Установить <span aria-hidden="true">↗</span></a>
+      <a class="button button-small button-dark" href="#download">Скачать <span aria-hidden="true">↗</span></a>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero section-wrap">
+    <section class="hero wrap">
       <div class="hero-copy">
         <div class="eyebrow"><span class="eyebrow-dot"></span> WINDOWS DESKTOP APP</div>
-        <h1>Telegram.<br><span class="headline-muted">На своём месте.</span></h1>
-        <p class="hero-description">Официальный Telegram — в отдельном приложении для Windows. Чистый интерфейс, привычное поведение и никакого лишнего браузерного шума.</p>
+        <h1>Твои чаты.<br><span class="muted-heading">Отдельное окно.</span></h1>
+        <p class="hero-lead">Telegram Web в самостоятельном приложении для Windows. Привычный интерфейс, отдельная иконка и быстрый доступ — без лишних вкладок браузера.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="https://github.com/German-GPD/Web-Desktop-App-Telegram/releases/latest/download/Telegram-Setup.exe">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
-            Скачать установщик для Windows <span class="button-arrow">↗</span>
+            Скачать для Windows
+            <span aria-hidden="true">↗</span>
           </a>
-          <a class="text-link" href="https://github.com/German-GPD/Web-Desktop-App-Telegram" target="_blank" rel="noreferrer">Исходный код <span>↗</span></a>
+          <a class="source-link" href="https://github.com/German-GPD/Web-Desktop-App-Telegram" target="_blank" rel="noopener noreferrer">Исходный код <span>↗</span></a>
         </div>
-        <p class="hero-note"><span class="note-dot"></span> Windows 10 / 11 · x64 · WebView2</p>
+        <div class="hero-meta"><span><i></i> Windows 10 / 11</span><span>64-bit</span><span>Бесплатно · MIT</span></div>
       </div>
 
-      <div class="app-stage" aria-label="Предпросмотр интерфейса Telegram Desktop">
-        <div class="stage-glow"></div>
-        <div class="app-window">
-          <div class="window-titlebar">
-            <div class="window-app">
-              <span class="mini-mark">✳</span>
-              <span>Telegram <small>Desktop</small></span>
-            </div>
-            <div class="window-controls" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="preview-wrap">
+        <div class="preview-glow"></div>
+        <div class="desktop-window" aria-label="Концептуальный макет окна Telegram Desktop">
+          <div class="window-bar">
+            <div class="window-app"><img src="assets/telegram.svg" alt="" width="20" height="20"><strong>Telegram <small>Desktop</small></strong></div>
+            <div class="window-controls" aria-hidden="true"><span></span><span></span><span></span></div>
           </div>
-          <div class="window-toolbar">
-            <div class="toolbar-icons"><span>‹</span><span>›</span><span>↻</span></div>
-            <div class="address-pill"><b></b> web.telegram.org/a/</div>
-            <span class="toolbar-more">↗</span>
+          <div class="app-toolbar">
+            <div class="toolbar-actions"><span>‹</span><span>›</span><span>↻</span></div>
+            <div class="web-address"><i></i> web.telegram.org/a/</div>
+            <span class="toolbar-menu">•••</span>
           </div>
-          <div class="chat-preview">
-            <div class="chat-sidebar">
-              <div class="sidebar-logo">✳ <span>Telegram</span></div>
-              <div class="side-item active">＋ <span>Новый чат</span></div>
-              <div class="side-item">⌕ <span>Поиск</span></div>
-              <div class="side-label">Недавнее</div>
-              <div class="side-chat">Идеи для проекта</div>
-              <div class="side-chat">План на неделю</div>
-              <div class="side-chat">Объясни WebView2</div>
-              <div class="sidebar-user"><span class="user-avatar">G</span><span>Профиль</span><b>•••</b></div>
-            </div>
-            <div class="chat-main">
-              <div class="chat-top">Telegram <span>⌄</span></div>
-              <div class="chat-center">
-                <div class="chat-symbol">✳</div>
-                <h3>С чего начнём?</h3>
-                <div class="prompt-box">
-                  <span>Напишите сообщение...</span>
-                  <b>↑</b>
-                </div>
-                <div class="prompt-suggestions"><span>Объясни сложную тему</span><span>Помоги с кодом</span></div>
+          <div class="telegram-ui">
+            <aside class="chat-list">
+              <div class="chat-search">⌕ <span>Поиск</span></div>
+              <div class="chat-row selected"><div class="avatar avatar-blue">G</div><div class="chat-info"><b>Избранное</b><small>Заметки и сохранённые сообщения</small></div></div>
+              <div class="chat-row"><div class="avatar avatar-violet">D</div><div class="chat-info"><b>Разработка</b><small>Новый коммит уже готов</small></div></div>
+              <div class="chat-row"><div class="avatar avatar-orange">W</div><div class="chat-info"><b>Web projects</b><small>Посмотрел обновление сайта</small></div></div>
+              <div class="chat-row"><div class="avatar avatar-green">T</div><div class="chat-info"><b>Технологии</b><small>Отправили документ</small></div></div>
+              <div class="chat-row"><div class="avatar avatar-pink">F</div><div class="chat-info"><b>Друзья</b><small>Увидимся позже!</small></div></div>
+            </aside>
+            <section class="conversation">
+              <div class="conversation-head"><div class="avatar avatar-blue">G</div><div><b>Избранное</b><small>личное пространство</small></div><span>⌕　⋮</span></div>
+              <div class="messages">
+                <div class="day-label">Сегодня</div>
+                <div class="message incoming">Привет! Это твой Telegram на компьютере.<small>14:02</small></div>
+                <div class="message outgoing">Отдельное окно — никаких лишних вкладок.<small>14:03　✓✓</small></div>
+                <div class="message incoming">Всё привычно. Чаты, файлы и звонки — через Telegram Web.<small>14:03</small></div>
+                <div class="message outgoing file-message"><span class="file-symbol">↓</span><span><b>project-notes.pdf</b><small>Документ · 2.4 MB</small></span><small>14:04　✓✓</small></div>
               </div>
-              <div class="chat-disclaimer">Telegram может допускать ошибки. Проверяйте важную информацию.</div>
-            </div>
+              <div class="message-compose"><span>Сообщение...</span><b>➤</b></div>
+            </section>
           </div>
-          <div class="window-status"><span><i></i> Официальный сайт Telegram</span><span>WebView2</span></div>
+          <div class="window-foot"><span><i></i> Telegram Web</span><span>WebView2</span></div>
         </div>
-        <div class="floating-tag"><span>✳</span> Made for Windows</div>
+        <div class="preview-caption"><span class="caption-dot"></span> Концептуальный макет интерфейса</div>
       </div>
     </section>
 
-    <section class="trust-strip section-wrap">
-      <div><strong>01</strong><span>Официальный сайт<br>web.telegram.org/a/</span></div>
-      <div><strong>02</strong><span>Отдельное окно<br>Windows</span></div>
-      <div><strong>03</strong><span>Вход сохраняется<br>на устройстве</span></div>
-      <div><strong>04</strong><span>Без рекламы<br>и лишней аналитики</span></div>
+    <section class="facts wrap" aria-label="Кратко о приложении">
+      <div><b>01</b><span>Официальный<br>Telegram Web</span></div>
+      <div><b>02</b><span>Самостоятельное<br>окно Windows</span></div>
+      <div><b>03</b><span>Локальное<br>сохранение сессии</span></div>
+      <div><b>04</b><span>Без собственной<br>телеметрии</span></div>
     </section>
 
-    <section class="features section-wrap" id="features">
-      <div class="section-heading">
-        <div><div class="eyebrow">ПРОСТО И УДОБНО</div><h2>Всё нужное.<br><span class="headline-muted">Ничего лишнего.</span></h2></div>
-        <p>Это не новый клиент и не копия Telegram. Приложение открывает официальный веб-сервис в отдельном окне Windows.</p>
+    <section class="features wrap" id="features">
+      <div class="section-intro">
+        <div><div class="eyebrow">ПРОСТО И ПОНЯТНО</div><h2>Telegram, который<br><span class="muted-heading">живёт на рабочем столе.</span></h2></div>
+        <p>Небольшая Windows-оболочка вокруг официального Telegram Web. Мы не меняем сам сервис и не создаём альтернативный мессенджер.</p>
       </div>
       <div class="feature-grid">
-        <article class="feature-card feature-large">
-          <div class="feature-icon green">▣</div>
-          <h3>В духе Windows 11</h3>
-          <p>Нативное окно, системные элементы управления, аккуратная панель навигации и собственная иконка.</p>
-          <div class="mini-window"><div class="mini-window-head"><span>✳ Telegram Desktop</span><span>— □ ×</span></div><div class="mini-window-body"><div></div><div></div><div></div></div></div>
+        <article class="feature-card feature-wide">
+          <div class="feature-icon"><img src="assets/telegram.svg" alt="" width="28" height="28"></div>
+          <h3>Привычный Telegram Web</h3>
+          <p>Приложение загружает официальный веб-клиент Telegram. Вход выполняется непосредственно на сайте Telegram.</p>
+          <div class="feature-window" aria-hidden="true"><div class="fw-sidebar"><i></i><i></i><i></i><i></i></div><div class="fw-chat"><span></span><span></span><span></span><span></span></div></div>
         </article>
         <article class="feature-card">
-          <div class="feature-icon">↻</div>
-          <h3>Твоя сессия остаётся</h3>
-          <p>Отдельный локальный профиль WebView2 хранит вход и cookies между запусками.</p>
+          <div class="feature-icon icon-blue">↻</div>
+          <h3>Сессия сохраняется</h3>
+          <p>Отдельный профиль WebView2 хранит локальные данные сайта между запусками.</p>
         </article>
         <article class="feature-card">
-          <div class="feature-icon">⌘</div>
-          <h3>Быстрые действия</h3>
-          <p><kbd>Ctrl</kbd> + <kbd>R</kbd> обновить · <kbd>Alt</kbd> + <kbd>←</kbd> назад · <kbd>Alt</kbd> + <kbd>→</kbd> вперёд.</p>
+          <div class="feature-icon icon-blue">⌘</div>
+          <h3>Быстрая навигация</h3>
+          <p><kbd>F5</kbd> или <kbd>Ctrl + R</kbd> — обновить. <kbd>Alt + ←</kbd> / <kbd>Alt + →</kbd> — назад и вперёд.</p>
         </article>
         <article class="feature-card">
-          <div class="feature-icon">⇩</div>
+          <div class="feature-icon icon-blue">⇩</div>
           <h3>Загрузки и разрешения</h3>
-          <p>WebView2 обрабатывает загрузки и запросы доступа сайта к камере и микрофону.</p>
+          <p>Обработка загрузок и запросов доступа к камере и микрофону через WebView2.</p>
         </article>
         <article class="feature-card">
-          <div class="feature-icon">⌁</div>
-          <h3>Лёгкая технология</h3>
-          <p>C# · WPF · .NET 8 · Microsoft Edge WebView2. Без Electron и встроенной копии браузера.</p>
+          <div class="feature-icon icon-blue">◐</div>
+          <h3>Настройки внешнего вида</h3>
+          <p>Светлая, тёмная и системная темы, масштаб сайта и настройка верхней панели.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon icon-blue">⬡</div>
+          <h3>Нативная технология</h3>
+          <p>C# · .NET 8 · WPF · Microsoft Edge WebView2. Без Electron.</p>
         </article>
       </div>
     </section>
 
-    <section class="install-section" id="install">
-      <div class="install-inner section-wrap">
-        <div class="install-copy">
-          <div class="eyebrow"><span class="eyebrow-dot"></span> УСТАНОВЩИК ДЛЯ WINDOWS</div>
-          <h2>Твой Telegram.<br><span>Прямо на рабочем столе.</span></h2>
-          <p>Скачай установщик, запусти его и закрепи Telegram в меню «Пуск» или на панели задач.</p>
-          <a class="button button-install" href="https://github.com/German-GPD/Web-Desktop-App-Telegram/releases/latest/download/Telegram-Setup.exe">
+    <section class="download-section" id="download">
+      <div class="download-inner wrap">
+        <div class="download-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> TELEGRAM DESKTOP FOR WINDOWS</div>
+          <h2>Открой Telegram.<br><span>Без браузерной суеты.</span></h2>
+          <p>Установи приложение в свой профиль Windows. Права администратора не нужны. Ярлык на рабочем столе можно добавить во время установки.</p>
+          <a class="button button-download" href="https://github.com/German-GPD/Web-Desktop-App-Telegram/releases/latest/download/Telegram-Setup.exe">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
-            Скачать установщик (.EXE)
+            Скачать Telegram-Setup.exe
+            <span aria-hidden="true">↗</span>
           </a>
-          <div class="install-meta">Windows 10 / 11 · 64-bit <span>·</span> Бесплатно · MIT</div>
+          <div class="download-meta">Windows 10 / 11 · x64 <span>·</span> Бесплатно · MIT</div>
         </div>
-        <div class="install-card">
-          <div class="install-card-top"><span class="brand-mark">✳</span><span>TELEGRAM DESKTOP</span><span class="version-label">LATEST</span></div>
-          <div class="install-file"><div class="file-icon">EXE</div><div><strong>Telegram-Setup.exe</strong><small>Windows Installer · x64</small></div><span class="download-check">↓</span></div>
-          <div class="install-divider"></div>
-          <div class="requirement"><span>Операционная система</span><strong>Windows 10 / 11</strong></div>
-          <div class="requirement"><span>Дополнительный компонент</span><strong>WebView2 Runtime</strong></div>
-          <a class="release-link" href="https://github.com/German-GPD/Web-Desktop-App-Telegram/releases" target="_blank" rel="noreferrer">Все версии и исходники <span>↗</span></a>
+        <div class="download-card">
+          <div class="download-card-head"><img src="assets/telegram.svg" alt="" width="30" height="30"><b>TELEGRAM DESKTOP</b><span>WINDOWS</span></div>
+          <div class="file-row"><div class="file-badge">EXE</div><div><strong>Telegram-Setup.exe</strong><small>Установщик · Windows x64</small></div><span class="file-arrow">↓</span></div>
+          <div class="card-rule"></div>
+          <div class="requirement"><span>Система</span><b>Windows 10 / 11</b></div>
+          <div class="requirement"><span>Архитектура</span><b>64-bit</b></div>
+          <div class="requirement"><span>Компонент</span><b>WebView2 Runtime</b></div>
+          <a class="release-link" href="https://github.com/German-GPD/Web-Desktop-App-Telegram/releases" target="_blank" rel="noopener noreferrer">Все релизы и контрольные суммы <span>↗</span></a>
         </div>
       </div>
     </section>
 
-    <section class="faq section-wrap">
+    <section class="faq wrap" id="faq">
       <div class="eyebrow">ПЕРЕД УСТАНОВКОЙ</div>
       <h2>Коротко о важном.</h2>
       <div class="faq-list">
-        <details open><summary>Это официальный клиент Telegram?</summary><p>Нет. Это независимая оболочка от German-GPD. Внутри загружается официальный сайт <a href="https://web.telegram.org/a/">web.telegram.org/a/</a>. Проект не связан с Telegram Messenger Inc.</p></details>
-        <details><summary>Нужен ли Microsoft Edge?</summary><p>Нужен Microsoft Edge WebView2 Runtime. Он может быть установлен отдельно от браузера Edge. Установщик проверяет его наличие и при необходимости предложит открыть официальную страницу загрузки.</p></details>
-        <details><summary>Где хранятся данные входа?</summary><p>Локально, в профиле WebView2 в папке %LOCALAPPDATA%\GermanGPD\Telegram\WebView2. Не передавай эту папку другим людям.</p></details>
-        <details><summary>Приложение бесплатное?</summary><p>Да. Исходный код распространяется по лицензии MIT. Для использования Telegram действуют условия и ограничения самого сервиса Telegram.</p></details>
+        <details open><summary>Это официальный Telegram Desktop?</summary><p>Нет. Это независимое приложение German-GPD, которое открывает официальный <a href="https://web.telegram.org/a/" target="_blank" rel="noopener noreferrer">Telegram Web</a> в отдельном окне Windows. Оно не связано с Telegram Messenger Inc.</p></details>
+        <details><summary>Где хранится авторизация?</summary><p>В локальном профиле WebView2: <code>%LOCALAPPDATA%\GermanGPD\Telegram\WebView2</code>. Не передавай эту папку другим людям: в ней могут находиться данные активной сессии.</p></details>
+        <details><summary>Нужен ли установленный Microsoft Edge?</summary><p>Нужен Microsoft Edge WebView2 Runtime. Это отдельный компонент, он может быть установлен даже без браузера Edge. Установщик проверяет его наличие и предлагает открыть официальную страницу Microsoft, если runtime отсутствует.</p></details>
+        <details><summary>Можно ли использовать приложение бесплатно?</summary><p>Да. Исходный код распространяется по лицензии MIT. Использование самого Telegram регулируется условиями Telegram.</p></details>
+        <details><summary>Что входит в установщик?</summary><p>Приложение для Windows x64, ярлык в меню «Пуск» и необязательный ярлык на рабочем столе. Установка выполняется в профиль пользователя без прав администратора.</p></details>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner section-wrap">
-      <a class="brand" href="#top"><span class="brand-mark">✳</span><span>Telegram <span class="brand-light">Desktop</span></span></a>
+  <footer class="site-footer">
+    <div class="footer-inner wrap">
+      <a class="brand" href="#top"><img src="assets/telegram.svg" alt="" width="30" height="30"><span>Telegram <span class="brand-muted">Desktop</span></span></a>
       <p>Независимый проект German-GPD. Не связан с Telegram Messenger Inc.</p>
-      <div><a href="https://github.com/German-GPD/Web-Desktop-App-Telegram">GitHub</a><a href="https://github.com/German-GPD/Web-Desktop-App-Telegram/blob/main/LICENSE">MIT License</a></div>
+      <div><a href="https://github.com/German-GPD/Web-Desktop-App-Telegram" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/German-GPD/Web-Desktop-App-Telegram/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></div>
     </div>
   </footer>
 </body>
