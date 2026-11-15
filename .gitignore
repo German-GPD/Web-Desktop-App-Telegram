@@ -1,0 +1,9 @@
+**/bin/
+**/obj/
+.vs/
+.vscode/
+artifacts/
+*.user
+*.suo
+
+src/Telegram.Desktop/Assets/Telegram.ico
