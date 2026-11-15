@@ -60,7 +60,7 @@ if ($xaml -notmatch "DynamicResource ChromeBackground") { throw "The adaptive Wi
 if ($xaml -match 'Text="web.telegram.org/a/"') { throw "The browser-style address pill should not be shown in the app shell." }
 
 $build = Get-Content (Join-Path $PSScriptRoot "build.ps1") -Raw
-if ($build -notmatch "assets\\telegram.ico" -or $build -notmatch "ApplicationIcon") { throw "The original Telegram ICO asset is not copied and embedded." }
+if ($build -notmatch "New-TelegramIcon" -or $build -notmatch "ApplicationIcon" -or $build -notmatch "FillPath") { throw "The Telegram paper-plane icon is not generated and embedded." }
 if ($build -notmatch "Copy-Item.*Telegram.ico") { throw "The portable build is missing the app icon file." }
 
 $site = Get-Content (Join-Path $root "index.html") -Raw
