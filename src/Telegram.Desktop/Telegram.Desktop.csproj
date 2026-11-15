@@ -15,5 +15,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4314.35" />
+    <Content Include="$(ApplicationIcon)" Link="Telegram.ico" CopyToOutputDirectory="PreserveNewest"
+             Condition="'$(ApplicationIcon)' != '' and Exists('$(ApplicationIcon)')" />
   </ItemGroup>
 </Project>
