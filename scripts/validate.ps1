@@ -14,7 +14,7 @@ $required = @(
     "src\Telegram.Desktop\MainWindow.xaml.cs",
     "src\Telegram.Desktop\app.manifest",
     "installer\Telegram.iss",
-    "index.html", "assets\site.js", "assets\telegram.svg", "assets\telegram.ico",
+    "index.html", "assets\site.js", "assets\telegram.svg", 
     ".github\workflows\windows-build.yml"
 )
 foreach ($relative in $required) {
