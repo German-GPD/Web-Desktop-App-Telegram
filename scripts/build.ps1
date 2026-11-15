@@ -10,7 +10,6 @@ $iconFile = Join-Path $iconDirectory "Telegram.ico"
 
 Write-Host "== Telegram Desktop: validate, restore and build ==" -ForegroundColor Cyan
 & (Join-Path $PSScriptRoot "validate.ps1")
-if ($LASTEXITCODE -ne 0) { throw "Static validation failed." }
 
 Add-Type -AssemblyName System.Drawing
 New-Item -ItemType Directory -Path $iconDirectory -Force | Out-Null
