@@ -138,10 +138,12 @@
                     <Button x:Name="TelegramButton" Style="{StaticResource ToolbarButton}"
                             ToolTip="Open Telegram — gefors😎🔥 (@german_gpd)"
                             Click="OpenTelegram_Click">
-                        <Viewbox Width="18" Height="18" Stretch="Uniform">
-                            <Path Data="M1,8.2 L18,1.5 L13.8,18 L9.3,12.5 L6.1,15.4 L6.6,10.5 Z"
-                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
-                                  Stretch="Uniform" />
+                        <Viewbox Width="19" Height="19" Stretch="Uniform">
+                            <Grid Width="24" Height="24">
+                                <Ellipse Fill="#229ED9" />
+                                <Path Data="M5.2,11.5 L19.5,5.7 L15.8,19.1 L11.6,14.5 L9.2,16.7 L9.5,12.7 Z"
+                                      Fill="White" Stretch="Uniform" />
+                            </Grid>
                         </Viewbox>
                     </Button>
                 </StackPanel>
