@@ -523,15 +523,16 @@ public partial class MainWindow : Window
         var dialog = new SettingsWindow(_settings) { Owner = this };
         if (dialog.ShowDialog() != true) return;
 
-        _settings = dialog.Settings;
-        ApplyToolbarSettings();
-        try { _settings.Save(); }
+        var updatedSettings = dialog.Settings;
+        try { updatedSettings.Save(); }
         catch (Exception ex)
         {
-            MessageBox.Show(this, $"Settings could not be saved.\\n\\n{ex.Message}", "Telegram Desktop", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(this, $"Settings could not be saved.\n\n{ex.Message}", "Telegram Desktop", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 
+        _settings = updatedSettings;
+        ApplyToolbarSettings();
         ApplySystemTheme();
         if (Browser.CoreWebView2 is not null)
         {
