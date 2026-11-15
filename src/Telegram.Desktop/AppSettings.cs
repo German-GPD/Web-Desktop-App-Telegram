@@ -24,6 +24,9 @@ public sealed class AppSettings
             var settings = JsonSerializer.Deserialize<AppSettings>(File.ReadAllText(SettingsPath))
                 ?? new AppSettings();
 
+            settings.ToolbarOrder ??= "reload,browser,update,settings,site,telegram";
+            settings.HiddenToolbarItems ??= "";
+
             settings.ZoomFactor = double.IsFinite(settings.ZoomFactor)
                 ? Math.Clamp(settings.ZoomFactor, 0.8, 1.5)
                 : 1.0;
