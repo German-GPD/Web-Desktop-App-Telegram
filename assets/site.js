@@ -1,36 +1,46 @@
 (() => {
   const root = document.documentElement;
-  const button = document.getElementById('themeToggle');
-  const media = window.matchMedia('(prefers-color-scheme: dark)');
-  let preference = 'system';
+  const button = document.getElementById("themeToggle");
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  const storageKey = "telegram-desktop-theme";
+  let preference = "system";
 
   try {
-    preference = localStorage.getItem('chatgpt-desktop-theme') || 'system';
+    const stored = localStorage.getItem(storageKey);
+    if (stored === "light" || stored === "dark") preference = stored;
   } catch {
-    preference = 'system';
+    preference = "system";
   }
 
   const applyTheme = () => {
-    const resolved = preference === 'system' ? (media.matches ? 'dark' : 'light') : preference;
-    root.dataset.theme = resolved;
+    root.dataset.theme = preference === "system"
+      ? (media.matches ? "dark" : "light")
+      : preference;
+
     if (button) {
-      const label = preference === 'system' ? 'System theme' : preference === 'dark' ? 'Dark theme' : 'Light theme';
-      button.setAttribute('aria-label', `Theme: ${label}. Click to change.`);
-      button.title = `Theme: ${label}`;
+      const label = preference === "system"
+        ? "Системная тема"
+        : preference === "dark" ? "Тёмная тема" : "Светлая тема";
+      button.setAttribute("aria-label", "Тема: " + label + ". Нажми, чтобы изменить.");
+      button.title = "Тема: " + label;
     }
   };
 
-  button?.addEventListener('click', () => {
-    preference = preference === 'system' ? 'light' : preference === 'light' ? 'dark' : 'system';
+  button?.addEventListener("click", () => {
+    preference = preference === "system" ? "light"
+      : preference === "light" ? "dark" : "system";
+
     try {
-      if (preference === 'system') localStorage.removeItem('chatgpt-desktop-theme');
-      else localStorage.setItem('chatgpt-desktop-theme', preference);
-    } catch {}
+      if (preference === "system") localStorage.removeItem(storageKey);
+      else localStorage.setItem(storageKey, preference);
+    } catch {
+      // The theme still works for this page view if storage is unavailable.
+    }
     applyTheme();
   });
 
-  media.addEventListener?.('change', () => {
-    if (preference === 'system') applyTheme();
+  media.addEventListener?.("change", () => {
+    if (preference === "system") applyTheme();
   });
 
   applyTheme();
