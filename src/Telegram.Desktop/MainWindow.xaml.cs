@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Microsoft.Web.WebView2.Core;
 using System.Net.Http;
@@ -71,77 +70,60 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        ApplyCustomIcon();
+        ApplyTelegramIcon();
         ApplyToolbarSettings();
         Loaded += MainWindow_Loaded;
         PreviewKeyDown += MainWindow_PreviewKeyDown;
         Closed += MainWindow_Closed;
     }
 
-    private string PersistentIconDirectory => Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-        "GermanGPD", "Telegram", "Icons");
-
     [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
     private static extern void SHChangeNotify(uint eventId, uint flags, string? item1, IntPtr item2);
 
-    private void ApplyCustomIcon()
+    private void ApplyTelegramIcon()
     {
-        var installedIcon = Path.Combine(AppContext.BaseDirectory, "Custom.ico");
-        var selectedIcon = !string.IsNullOrWhiteSpace(_settings.CustomIconPath) && File.Exists(_settings.CustomIconPath)
-            ? _settings.CustomIconPath
-            : installedIcon;
-
-        if (!File.Exists(selectedIcon))
+        var iconPath = Path.Combine(AppContext.BaseDirectory, "Telegram.ico");
+        if (!File.Exists(iconPath))
             return;
 
         try
         {
-            using var hashStream = File.OpenRead(selectedIcon);
-            var iconHash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(hashStream));
-            var persistentIconPath = Path.Combine(PersistentIconDirectory, $"{iconHash}.ico");
-            Directory.CreateDirectory(PersistentIconDirectory);
-            if (!string.Equals(Path.GetFullPath(selectedIcon), Path.GetFullPath(persistentIconPath), StringComparison.OrdinalIgnoreCase) &&
-                !File.Exists(persistentIconPath))
-                File.Copy(selectedIcon, persistentIconPath, false);
-
-            using (var iconStream = File.OpenRead(persistentIconPath))
-            {
-                var frame = BitmapFrame.Create(iconStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-                frame.Freeze();
-                Icon = frame;
-            }
-            _settings.CustomIconPath = persistentIconPath;
-            _settings.Save();
-            UpdateWindowsShortcutIcons(persistentIconPath);
+            using var iconStream = File.OpenRead(iconPath);
+            var frame = BitmapFrame.Create(iconStream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+            frame.Freeze();
+            Icon = frame;
+            UpdateWindowsShortcutIcons(iconPath);
         }
         catch (Exception ex)
         {
-            StatusText.Text = $"Could not update the app icon: {ex.Message}";
+            StatusText.Text = $"Could not load the Telegram app icon: {ex.Message}";
         }
     }
 
     private static void UpdateWindowsShortcutIcons(string iconPath)
     {
-        var programs = Environment.GetFolderPath(Environment.SpecialFolder.Programs);
-        var desktop = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-        var shortcuts = new List<string>
+        var shortcuts = new[]
         {
-            Path.Combine(programs, "Telegram.lnk"),
-            Path.Combine(desktop, "Telegram.lnk")
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Programs), "Telegram.lnk"),
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "Telegram.lnk")
         };
 
         var shellType = Type.GetTypeFromProgID("WScript.Shell");
-        if (shellType is null) return;
+        if (shellType is null)
+            return;
 
         object? shell = null;
         try
         {
             shell = Activator.CreateInstance(shellType);
-            if (shell is null) return;
+            if (shell is null)
+                return;
+
             foreach (var shortcutPath in shortcuts)
             {
-                if (!File.Exists(shortcutPath)) continue;
+                if (!File.Exists(shortcutPath))
+                    continue;
+
                 object? shortcut = null;
                 try
                 {
@@ -154,7 +136,7 @@ public partial class MainWindow : Window
                 }
                 catch
                 {
-                    // A shortcut may be unavailable or locked; continue updating the others.
+                    // Updating a locked or unavailable shortcut must not prevent startup.
                 }
                 finally
                 {
@@ -165,7 +147,7 @@ public partial class MainWindow : Window
         }
         catch
         {
-            // Keep the window icon even if Windows shell shortcut updates are unavailable.
+            // The app window keeps its icon even if shortcut updates are unavailable.
         }
         finally
         {
@@ -541,7 +523,6 @@ public partial class MainWindow : Window
         if (dialog.ShowDialog() != true) return;
 
         _settings = dialog.Settings;
-        ApplyCustomIcon();
         ApplyToolbarSettings();
         try { _settings.Save(); }
         catch (Exception ex)
