@@ -11,46 +11,11 @@ $iconFile = Join-Path $iconDirectory "Telegram.ico"
 Write-Host "== Telegram Desktop: validate, restore and build ==" -ForegroundColor Cyan
 & (Join-Path $PSScriptRoot "validate.ps1")
 
-Add-Type -AssemblyName System.Drawing
+$iconSource = Join-Path $root "assets\telegram.ico"
 New-Item -ItemType Directory -Path $iconDirectory -Force | Out-Null
-
-# One official-style Telegram mark is shared by the executable, window, installer and shortcuts.
-$bitmap = [System.Drawing.Bitmap]::new(256, 256)
-$graphics = [System.Drawing.Graphics]::FromImage($bitmap)
-$graphics.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
-$graphics.Clear([System.Drawing.Color]::Transparent)
-$blue = [System.Drawing.SolidBrush]::new([System.Drawing.Color]::FromArgb(255, 34, 158, 217))
-$white = [System.Drawing.SolidBrush]::new([System.Drawing.Color]::White)
-$graphics.FillEllipse($blue, 5, 5, 246, 246)
-$plane = [System.Drawing.Point[]]@(
-    [System.Drawing.Point]::new(48, 124),
-    [System.Drawing.Point]::new(211, 61),
-    [System.Drawing.Point]::new(169, 204),
-    [System.Drawing.Point]::new(128, 157),
-    [System.Drawing.Point]::new(103, 181),
-    [System.Drawing.Point]::new(109, 139)
-)
-$graphics.FillPolygon($white, $plane)
-$foldPen = [System.Drawing.Pen]::new([System.Drawing.Color]::FromArgb(255, 34, 158, 217), 5)
-$foldPen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
-$foldPen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
-$graphics.DrawLine($foldPen, 109, 139, 169, 204)
-$handle = $bitmap.GetHicon()
-$icon = [System.Drawing.Icon]::FromHandle($handle)
-$iconStream = [System.IO.File]::Create($iconFile)
-try {
-    $icon.Save($iconStream)
-}
-finally {
-    $iconStream.Dispose()
-    $icon.Dispose()
-    $foldPen.Dispose()
-    $white.Dispose()
-    $blue.Dispose()
-    $graphics.Dispose()
-    $bitmap.Dispose()
-}
-if (!(Test-Path $iconFile)) { throw "Telegram icon generation failed." }
+if (!(Test-Path $iconSource)) { throw "The original Telegram ICO asset is missing: $iconSource" }
+Copy-Item -Path $iconSource -Destination $iconFile -Force
+Write-Host "Original Telegram icon copied for the executable, window and installer." -ForegroundColor Green
 
 dotnet --info
 dotnet restore $project
